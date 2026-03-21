@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JADDA SPORTS - Registro</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/registro.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header class="header">
+    <a href="/html/principal.html" class="logo-text">
+      JADDA SPORTS <span class="logo-sub">SPORT STORE</span>
+    </a>
+  </header>
+
+  <main class="main-container">
+    <div class="form-area">
+      
+      <div id="registroContenido">
+        <h2>REGISTRARSE</h2>
+        <form id="registroForm">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">NOMBRE</label>
+              <input type="text" class="form-control" id="nombre" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">APELLIDO</label>
+              <input type="text" class="form-control" id="apellido" required>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">EMAIL</label>
+            <input type="email" class="form-control" id="email" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">TELÉFONO</label>
+            <input type="tel" class="form-control" id="telefono" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">DIRECCIÓN</label>
+            <input type="text" class="form-control" id="direccion" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">CONTRASEÑA</label>
+            <input type="password" class="form-control" id="password" required>
+            
+            <div id="passwordHelp" style="display:none; margin-top:10px;">
+              <small>Debe tener:</small>
+              <ul style="font-size:13px; margin:5px 0;">
+                <li id="mayus">Una mayúscula</li>
+                <li id="simbolo">Un símbolo</li>
+                <li id="longitud">Mínimo 7 caracteres</li>
+              </ul>
+              <div class="progress" style="height: 10px;">
+                <div id="barraSeguridad" class="progress-bar" style="width:0%"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">CONFIRMAR CONTRASEÑA</label>
+            <input type="password" class="form-control" id="confirmar" required>
+          </div>
+
+          <div class="form-check mb-3">
+  <input class="form-check-input" type="checkbox" id="terminos" required>
+  <label class="form-check-label" for="terminos" style="font-family: 'Poppins', sans-serif; font-size: 13px;">
+    Acepto los <a href="#" style="color: #e73737;">Términos y Condiciones</a> de JADDA SPORTS.
+  </label>
+</div>
+
+          <div class="text-center d-grid gap-2">
+            <button type="submit" class="btn btn-danger btn-lg">CREAR CUENTA</button>
+          </div>
+        </form>
+
+        <div class="text-center mt-4">
+          <p class="text-muted small">O REGÍSTRATE CON</p>
+          <div class="d-flex justify-content-center gap-3">
+            <a href="/auth/google" class="btn btn-outline-dark d-flex align-items-center px-3">
+              <i class="fab fa-google me-2 text-danger"></i> GOOGLE
+            </a>
+            <a href="/auth/facebook" class="btn btn-outline-dark d-flex align-items-center px-3">
+              <i class="fab fa-facebook-f me-2 text-primary"></i> FACEBOOK
+            </a>
+          </div>
+          <p class="mt-4 small">
+            ¿YA TIENES CUENTA? <a href="/html/inicio.html" class="text-danger fw-bold">INICIA SESIÓN</a>
+          </p>
+        </div>
+      </div> <div id="mensajeExitoso" style="display:none; text-align:center; margin-top:30px">
+        <h3 class="text-warning">
+          <i class="fas fa-envelope"></i> CONFIRMA TU CORREO 📩
+        </h3>
+        <p>Te enviamos un enlace de activación. Revisa tu bandeja de entrada o spam.</p>
+        <button onclick="window.location.href='/html/inicio.html'" class="btn btn-secondary mt-2">VOLVER</button>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="/js/registro.js"></script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+/* --- ANIMACIONES --- */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  50% { transform: translateX(10px); }
+  75% { transform: translateX(-10px); }
+}
+
+.shake-error {
+  animation: shake 0.4s ease-in-out;
+  border: 2px solid #e73737 !important;
+}
+
+/* --- CONFIGURACIÓN GENERAL --- */
+html, body {
+    height: auto !important; 
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #f5f5f5;
+    font-family: 'Bebas Neue', sans-serif;
+    margin: 0;
+}
+
+/* --- NAVBAR JADDA (UNIFICADO) --- */
+.navbar {
+    padding: 0.1rem 1rem !important;
+    background-color: #e73737 !important;
+    height: 55px !important;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-brand img {
+    max-height: 30px !important;
+    width: auto !important;
+    object-fit: contain;
+}
+
+.navbar-nav .nav-link {
+    color: white !important;
+    font-size: 0.9rem !important;
+    letter-spacing: 1px;
+    padding: 0.5rem 0.8rem !important;
+    text-transform: uppercase;
+}
+
+/* --- BANNER (AZUL JADDA) --- */
+.banner {
+    background-color: #0055aa;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 32px;
+}
+
+/* --- CONTENIDO --- */
+main {
+    flex: 1;
+    margin-top: 20px;
+}
+
+/* --- CARDS ESTILO CATÁLOGO --- */
+.card {
+    border: none !important;
+    border-radius: 12px;
+    background: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15) !important;
+}
+
+.card img {
+    height: 200px;
+    object-fit: cover; /* En principal el 'cover' suele verse mejor para banners */
+}
+
+/* --- FOOTER (UNIFICADO) --- */
+.footer {
+    background-color: #003366;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+/* Efecto de brillo a las cards de inicio */
+.card {
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    border: 1px solid #e73737 !important; /* Borde rojo al pasar el mouse */
+}
+
+/* Animación para el banner de oferta */
+.bg-danger h2 {
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+}
+
+/* Agrega esto a principal.css */
+html {
+    scroll-behavior: smooth; /* Para que al dar clic en CONTACTO baje suavemente */
+}
+
+section {
+    padding: 60px 0; /* Espaciado uniforme para todas las secciones */
+}
+
+.category-card {
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.category-card:hover {
+    background-color: #e73737 !important;
+    color: white !important;
+}
+
+.category-card:hover i {
+    color: white !important; /* El icono también cambia a blanco */
+}
+
+/* Color Azul Jadda para el fondo del texto */
+.bg-azul-jadda {
+    background-color: #0055aa !important; /* Tu azul */
+}
+
+/* Overlay Rojo Jadda con transparencia sobre la imagen */
+.bg-jadda-overlay {
+    background: rgba(231, 55, 55, 0.85); /* Tu rojo con 85% de opacidad */
+    border-left: 5px solid white;
+}
+
+/* Borde sutil para el contenedor */
+.border-red-jadda {
+    border: 2px solid #e73737;
+}
+
+/* Botón blanco que resalta sobre el azul */
+.btn-jadda-white {
+    background-color: white;
+    color: #0055aa; /* Texto azul */
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    padding: 10px 25px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-jadda-white:hover {
+    background-color: #e73737; /* Cambia a rojo al pasar el mouse */
+    color: white;
+    transform: scale(1.05);
+}
+
+/* Filtro para la imagen para que no choque con el diseño */
+.img-jadda {
+    filter: grayscale(20%) contrast(110%);
+}

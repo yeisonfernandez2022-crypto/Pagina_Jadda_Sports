@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JADDA SPORTS - Finalizar Compra</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Finalizar.css" />
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark px-4" style="background-color: #e73737;">
+      <a class="navbar-brand" href="#">
+        <img src="https://i.postimg.cc/SxjSR241/Black-And-White-Flat-Style-Running-Club-Logo.png" alt="Logo JADDA SPORTS" class="logo-img">
+      </a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="#">INICIO</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">CATÁLOGO</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">CATEGORÍAS</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">NOSOTROS</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">AYUDA</a></li>
+        </ul>
+        <form class="d-flex align-items-center" role="search">
+          <input class="form-control me-2" type="search" placeholder="Buscar..." />
+          <span class="text-white fw-bold">BIENVENIDO</span>
+        </form>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container mt-5 pt-4">
+    <div class="row">
+      <div class="col-md-6 datos-personales">
+        <h4>DATOS PERSONALES</h4>
+        <form>
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre:</label>
+            <input type="text" class="form-control" id="nombre" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" class="form-control" id="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="telefono" class="form-label">Teléfono:</label>
+            <input type="tel" class="form-control" id="telefono" required>
+          </div>
+          <div class="mb-3">
+            <label for="direccion" class="form-label">Dirección:</label>
+            <input type="text" class="form-control" id="direccion" required>
+          </div>
+          <div class="mb-3">
+            <label for="ciudad" class="form-label">Ciudad:</label>
+            <input type="text" class="form-control" id="ciudad" required>
+          </div>
+          <div class="mb-3">
+            <label for="codigo" class="form-label">Código Postal:</label>
+            <input type="text" class="form-control" id="codigo" required>
+          </div>
+        </form>
+      </div>
+
+      <div class="col-md-6 metodos-pago">
+        <h4>MÉTODOS DE PAGO</h4>
+        <form>
+          <div class="form-check mb-2">
+            <input class="form-check-input" type="radio" name="pago" id="tarjeta" checked>
+            <label class="form-check-label" for="tarjeta">Tarjeta de crédito</label>
+          </div>
+          <div class="form-check mb-2">
+            <input class="form-check-input" type="radio" name="pago" id="paypal">
+            <label class="form-check-label" for="paypal">Paypal</label>
+          </div>
+          <div class="form-check mb-4">
+            <input class="form-check-input" type="radio" name="pago" id="Contra Entrega">
+            <label class="form-check-label" for="empresa">Nequi</label>
+          </div>
+          <div class="form-check mb-2">
+            <input class="form-check-input" type="radio" name="pago" id="tarjeta" checked>
+            <label class="form-check-label" for="tarjeta">Contra Entrega</label>
+          </div>
+          
+          <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-danger">Pagar</button>
+            <button type="button" class="btn btn-primary">Reservar Entrega</button>
+            <button type="button" class="btn btn-secondary">Cancelar Pedido</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer text-white text-center">
+    <p>©2025 JADDASPORTS TODOS LOS DERECHOS RESERVADOS.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
