@@ -365,7 +365,7 @@ app.post('/api/recuperar-password', (req, res) => {
         if (err) return res.status(500).send("Error BD");
         
         if (results.length > 0) {
-            // 2. Guardamos el token temporal en el usuario
+            
             db.query("UPDATE USUARIOS SET TOKEN = ? WHERE EMAIL = ?", [token, email], (err2) => {
                 if (err2) return res.status(500).send("Error al generar token");
 

@@ -1,4 +1,3 @@
-// Este código debe estar en public/js/auth-session.js
 document.addEventListener("DOMContentLoaded", () => {
     checkUserSession();
 });
