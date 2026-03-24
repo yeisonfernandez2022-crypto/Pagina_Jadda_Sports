@@ -1,29 +1,44 @@
 document.addEventListener("DOMContentLoaded", () => {
     
-    // --- 1. LÓGICA DE SESIÓN (NOMBRE DE USUARIO) ---
+    // --- 1. LÓGICA DE SESIÓN (CORREGIDA PARA JADDA SPORTS) ---
     const cargarSesion = () => {
-        fetch('/api/user')
-            .then(res => {
-                if (!res.ok) throw new Error();
-                return res.json();
-            })
-            .then(user => {
-                const nameDisplay = document.getElementById("userNameDisplay");
-                const btnLogout = document.getElementById("btnLogout");
-                
-                if (nameDisplay) nameDisplay.textContent = user.nombre;
-                if (btnLogout) btnLogout.style.display = "inline-block";
-            })
-            .catch(() => {
-                const nameDisplay = document.getElementById("userNameDisplay");
-                const guestButtons = document.getElementById("guestButtons");
-                
-                if (nameDisplay) nameDisplay.textContent = "Invitado";
-                if (guestButtons) guestButtons.style.display = "inline-block";
-            });
+        const fullUserName = localStorage.getItem("userName");
+        const nameDisplay = document.getElementById("userNameDisplay");
+        const btnLogout = document.getElementById("btnLogout");
+        const guestButtons = document.getElementById("guestButtons");
+
+        if (fullUserName && fullUserName !== "Invitado") {
+            // Formatear: Tomamos solo el primer nombre
+            const nombreLimpio = fullUserName.split(" ")[0].toUpperCase();
+            
+            if (nameDisplay) {
+                nameDisplay.textContent = `HOLA, ${nombreLimpio}`;
+                nameDisplay.classList.remove("d-none");
+            }
+
+            // Mostrar SALIR y ocultar LOGIN/REGISTRO con d-none
+            if (btnLogout) {
+                btnLogout.classList.remove("d-none");
+                btnLogout.style.display = "inline-block";
+            }
+            if (guestButtons) {
+                guestButtons.classList.add("d-none");
+                guestButtons.style.setProperty("display", "none", "important");
+            }
+            
+            console.log("✅ Sesión reconocida en Catálogo: " + nombreLimpio);
+        } else {
+            // Estado Invitado
+            if (nameDisplay) nameDisplay.textContent = "INVITADO";
+            if (btnLogout) btnLogout.classList.add("d-none");
+            if (guestButtons) {
+                guestButtons.classList.remove("d-none");
+                guestButtons.style.display = "flex";
+            }
+        }
     };
 
-    // --- 2. LÓGICA DE PRODUCTOS DE MYSQL ---
+    // --- 2. LÓGICA DE PRODUCTOS DE MYSQL (SE MANTIENE IGUAL) ---
     const cargarProductos = () => {
         fetch('/api/productos')
             .then(res => {
@@ -34,10 +49,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 const contenedor = document.getElementById("contenedorProductos");
                 if (!contenedor) return;
 
-                contenedor.innerHTML = ""; // Limpiamos
+                contenedor.innerHTML = ""; 
 
                 productos.forEach((p, index) => {
-                    // Usamos las columnas exactas de tu DB: IMAGEN, NOMBRE, PRECIO
                     contenedor.innerHTML += `
                         <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="${index * 50}">
                             <div class="card h-100 shadow-sm product-card border-0">
@@ -57,7 +71,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     `;
                 });
 
-                // 🔥 ¡CLAVE! Refrescar AOS para que las cards recién creadas se animen
                 if (typeof AOS !== 'undefined') {
                     AOS.refresh();
                 }
@@ -69,18 +82,14 @@ document.addEventListener("DOMContentLoaded", () => {
             });
     };
 
-    // Ejecutamos ambas funciones al cargar la página
     cargarSesion();
     cargarProductos();
-
 });
 
-
+// Función de Salida
 function cerrarSesion() {
-    fetch('/logout')
-        .then(() => {
-            // Recarga la misma página donde estás parado
-            window.location.reload();
-        })
-        .catch(err => console.error("Error al cerrar sesión", err));
+    localStorage.clear();
+    fetch('/logout').finally(() => {
+        window.location.href = "/html/principal.html";
+    });
 }

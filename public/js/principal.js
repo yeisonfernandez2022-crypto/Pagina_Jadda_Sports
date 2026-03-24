@@ -1,51 +1,68 @@
 document.addEventListener("DOMContentLoaded", () => {
-
-    AOS.init({
-        duration: 800, // Duración de la animación en milisegundos
-        once: true,    // Si quieres que solo se anime la primera vez que bajas
-    });
-
+    if (typeof AOS !== 'undefined') {
+        AOS.init({ 
+            duration: 1000, // Un poco más lento para que se aprecie el efecto
+            once: false,    // Ponlo en 'false' para que la animación se repita al subir y bajar
+            mirror: true,   // Ayuda a que detecte mejor el movimiento
+            offset: 120,    // La animación empieza un poco antes de que el elemento sea visible
+            storeEvents: false 
+        });
+        
+        // TRUCO EXTRA: Forzar el refresco de animaciones después de un momento
+        setTimeout(() => {
+            AOS.refresh();
+        }, 500);
+    }
 });
-  const userNameDisplay = document.getElementById("userNameDisplay");
-  const btnLogout = document.getElementById("btnLogout");
-  const guestButtons = document.getElementById("guestButtons");
 
-  // --- 1. CAPTURAR NOMBRE DE GOOGLE ---
-  const urlParams = new URLSearchParams(window.location.search);
-  const userFromGoogle = urlParams.get('user');
-
-  if (userFromGoogle) {
-    localStorage.setItem('userName', decodeURIComponent(userFromGoogle));
-    window.history.replaceState({}, document.title, window.location.pathname);
-  }
-
-  // --- 2. LÓGICA DE VISUALIZACIÓN (SIN REDIRECCIÓN) ---
-  const fullUserName = localStorage.getItem("userName");
-
-  if (fullUserName && fullUserName !== "Invitado") {
-    // ✅ CASO: USUARIO LOGEADO
-    const primerNombre = fullUserName.trim().split(" ")[0].split("@")[0]; // Corta en espacio o en @
-    const nombreFormateado = primerNombre.charAt(0).toUpperCase() + primerNombre.slice(1).toLowerCase();
-
-    if (userNameDisplay) userNameDisplay.textContent = `Hola, ${nombreFormateado}`;
-    if (btnLogout) btnLogout.style.display = "inline-block";
-    if (guestButtons) guestButtons.style.display = "none";
-
-  } else {
-    // 👤 CASO: INVITADO (O SESIÓN CERRADA)
-    if (userNameDisplay) userNameDisplay.textContent = "Invitado";
-    if (btnLogout) btnLogout.style.display = "none";
-    if (guestButtons) guestButtons.style.display = "block";
-  }
-
-  // --- 3. LOGOUT (QUEDÁNDOSE EN LA PÁGINA) ---
-  btnLogout?.addEventListener("click", (e) => {
-    e.preventDefault(); 
     
-    // Borramos los datos de sesión
-    localStorage.clear(); 
-    
-    // En lugar de redirigir, solo recargamos la página actual
-    // Esto hará que el código de arriba se ejecute de nuevo y vea que ya no hay usuario
-    window.location.reload(); 
-  });
+    try {
+        const userNameDisplay = document.getElementById("userNameDisplay");
+        const btnLogout = document.getElementById("btnLogout");
+        const guestButtons = document.getElementById("guestButtons");
+
+        // Obtenemos el nombre guardado en LocalStorage
+        const fullUserName = localStorage.getItem("userName");
+
+        if (fullUserName && fullUserName !== "Invitado") {
+            // 1. Formatear nombre: Tomamos solo el primer pedazo
+            const nombreLimpio = fullUserName.split(" ")[0].toUpperCase();
+            
+            // 2. Mostrar nombre
+            if (userNameDisplay) {
+                userNameDisplay.textContent = `HOLA, ${nombreLimpio}`;
+                userNameDisplay.classList.remove("d-none");
+            }
+
+            // 3. Mostrar botón SALIR
+            if (btnLogout) {
+                btnLogout.classList.remove("d-none");
+                btnLogout.style.display = "inline-block";
+            }
+
+            // 4. OCULTAR LOGIN Y REGISTRO (Usando d-none de Bootstrap)
+            if (guestButtons) {
+                guestButtons.classList.add("d-none");
+                guestButtons.style.setProperty("display", "none", "important");
+            }
+            
+            console.log("✅ Interfaz de usuario activa: " + nombreLimpio);
+        } else {
+            // Lógica para INVITADO
+            if (userNameDisplay) userNameDisplay.textContent = "";
+            if (btnLogout) btnLogout.classList.add("d-none");
+            if (guestButtons) {
+                guestButtons.classList.remove("d-none");
+                guestButtons.style.display = "flex";
+            }
+        }
+    } catch (error) {
+        console.error("Error en la lógica de sesión:", error);
+    }
+
+function cerrarSesion() {
+    console.log("Cerrando sesión...");
+    localStorage.clear();
+    // Redirigir para limpiar el estado de la página
+    window.location.href = "/html/principal.html";
+}
